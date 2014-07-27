@@ -104,7 +104,7 @@ void init_fft(int length_, int sampleRate_)
 		int n = m << 1;
 		for (int k = 0; k < m; k++)
 		{
-			float arg = -2.0f * PI * k / n;
+			float arg = -2.0f * PI * k / n; 
 			cosTable[x] = cosf(arg);
 			sinTable[x] = sinf(arg);
 			x++;

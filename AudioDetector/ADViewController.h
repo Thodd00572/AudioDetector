@@ -10,4 +10,21 @@
 
 @interface ADViewController : UIViewController
 
+#pragma mark - IBOutlet
+@property (weak, nonatomic) IBOutlet UIButton *btnRecordSample;
+@property (weak, nonatomic) IBOutlet UILabel *lblStatus;
+@property (weak, nonatomic) IBOutlet UIButton *btnTrackSound;
+@property (weak, nonatomic) IBOutlet UIButton *btnRecord;
+@property (weak, nonatomic) IBOutlet UIView *buttonView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segMode;
+@property (weak, nonatomic) IBOutlet UILabel *lblResult;
+
+#pragma mark - Properties
+
+
+#pragma marl - IBAction
+- (IBAction)btnStartDidTouch:(id)sender;
+//- (IBAction)btnTrackSoundDidTouch:(id)sender;
+- (IBAction)btnRecordDidTouch:(id)sender;
+- (IBAction)segmentDidChange:(id)sender;
 @end

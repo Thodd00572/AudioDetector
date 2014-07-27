@@ -5,7 +5,7 @@
 // Wikipedia: In terms of frequency, human voices are roughly in the range of 
 // 80 Hz to 1100 Hz (that is, E2 to C6).
 const float MIN_FREQ = 50.0f;
-const float MAX_FREQ = 1500.0f;
+const float MAX_FREQ = 3500.0f;
 
 @interface Recorder (Private)
 - (void)setUpAudioFormat;
@@ -59,6 +59,7 @@ static void recordCallback(
 {
 	audioFormat.mFormatID         = kAudioFormatLinearPCM;
 	audioFormat.mSampleRate       = 11025.0;
+//    audioFormat.mSampleRate       = 44100;
 	audioFormat.mChannelsPerFrame = 1;
 	audioFormat.mBitsPerChannel   = 16;
 	audioFormat.mFramesPerPacket  = 1;
