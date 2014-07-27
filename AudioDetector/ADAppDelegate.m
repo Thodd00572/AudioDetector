@@ -16,7 +16,10 @@
     [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     
     // Remove badge number
-    application.applicationIconBadgeNumber = 0;
+    if (application.applicationIconBadgeNumber > 0)
+    {
+        [application setApplicationIconBadgeNumber:0];
+    }
 
     return YES;
 }

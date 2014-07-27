@@ -92,7 +92,7 @@
 		64C2968A1984F55600C7565B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		64C2968B1984F55600C7565B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		64C2968C1984F55600C7565B /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		7A1D9B1C196E2A8300D2C301 /* AudioDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A1D9B1C196E2A8300D2C301 /* CallMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1D9B1F196E2A8300D2C301 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7A1D9B21196E2A8300D2C301 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7A1D9B23196E2A8300D2C301 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -203,7 +203,7 @@
 		7A1D9B1D196E2A8300D2C301 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7A1D9B1C196E2A8300D2C301 /* AudioDetector.app */,
+				7A1D9B1C196E2A8300D2C301 /* CallMe.app */,
 				7A1D9B3D196E2A8300D2C301 /* AudioDetectorTests.xctest */,
 			);
 			name = Products;
@@ -349,7 +349,7 @@
 			);
 			name = AudioDetector;
 			productName = AudioDetector;
-			productReference = 7A1D9B1C196E2A8300D2C301 /* AudioDetector.app */;
+			productReference = 7A1D9B1C196E2A8300D2C301 /* CallMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7A1D9B3C196E2A8300D2C301 /* AudioDetectorTests */ = {
@@ -609,7 +609,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDetector/AudioDetector-Prefix.pch";
 				INFOPLIST_FILE = "AudioDetector/AudioDetector-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CallMe;
 				PROVISIONING_PROFILE = "3D696BFE-1092-4CD5-97C2-77ED6969DDCD";
 				WRAPPER_EXTENSION = app;
 			};

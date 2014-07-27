@@ -428,7 +428,6 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
     
     switch (currentRecordType) {
         case RecordTypeNone:
-
             break;
             
         case RecordTypeRecordingSample:
