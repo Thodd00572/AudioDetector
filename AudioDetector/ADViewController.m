@@ -10,6 +10,8 @@
 #import "Recorder.h"
 
 #define kCompareDelta 50
+#define kHighPich   1000.00f
+#define kNumberOfCheckMatchingItem 5
 
 typedef enum {
     Preparing = 0,
@@ -27,7 +29,7 @@ typedef enum {
 
 @interface ADViewController () <RecorderDelegate>
 {
-    Recorder * recorder;
+    Recorder * _recorder;
     float detectedFreq;           // the frequency we detected
 	float deltaFreq;              // for calculating how sharp/flat user is
     
@@ -176,10 +178,10 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
 
 - (void)stopAudioRecorder
 {
-    if (recorder != nil)
+    if (_recorder != nil)
 	{
-		[recorder stopRecording];
-		recorder = nil;
+		[_recorder stopRecording];
+		_recorder = nil;
         
 		AudioSessionSetActive(false);
 	}
@@ -190,7 +192,7 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
  */
 - (void)startAudioRecorder
 {
-	if (recorder == nil)  // should always be the case
+	if (_recorder == nil)  // should always be the case
 	{
 		AudioSessionInitialize(
                                NULL,
@@ -210,11 +212,11 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
         
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 		
-		recorder = [[Recorder alloc] init];
-		recorder.delegate = self;
-        recorder.trackingPitch = YES;
+		_recorder = [[Recorder alloc] init];
+		_recorder.delegate = self;
+        _recorder.trackingPitch = YES;
         currentState = Recording;
-		[recorder startRecording];
+		[_recorder startRecording];
 	}
 }
 
@@ -235,14 +237,14 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
     
     deltaFreq = 0.0f;
 
-    recorder.trackingPitch= YES;
+    _recorder.trackingPitch= YES;
     currentState = Recording;
 }
 
 - (void)pauseRecording
 {
     currentState = Recording;
-    recorder.trackingPitch=  YES;
+    _recorder.trackingPitch=  YES;
 }
 
 - (void)stopTimer
@@ -265,7 +267,7 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
         
         deltaFreq = 0.0f;
         
-        if (freq > 1000.0f)  // record high pitch
+        if (freq > kHighPich)  // record high pitch
         {
             if (isRecordingSample)
             {
@@ -303,9 +305,9 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
             trackedIndex = [NSMutableArray array];
         }
         
-        if ([trackedIndex count] >= 5)
+        if ([trackedIndex count] >= kNumberOfCheckMatchingItem)
         {
-            recorder.trackingPitch = NO;
+            _recorder.trackingPitch = NO;
             [self showResult];
             trackedIndex = [NSMutableArray array];
         }
@@ -320,7 +322,7 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
 {
     [self resetResult];
     // Stop receiving pitch
-    recorder.trackingPitch = NO;
+    _recorder.trackingPitch = NO;
     // Change flag status
     isRecordingSample = ! isRecordingSample;
     if (isRecordingSample)
@@ -348,14 +350,14 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
         }
     }
     // Continue receiving pitch
-    recorder.trackingPitch = YES;
+    _recorder.trackingPitch = YES;
 }
 
 - (void)startTrackingSample
 {
     [self resetResult];
     // Stop receiving pitch
-    recorder.trackingPitch = NO;
+    _recorder.trackingPitch = NO;
     isTrackingSound = ! isTrackingSound;
     if (isTrackingSound)
     {
@@ -373,7 +375,7 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
     }
     
     // Continue receiving pitch
-    recorder.trackingPitch = YES;
+    _recorder.trackingPitch = YES;
     
 }
 
@@ -419,12 +421,12 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
 
 #pragma mark - IBActions
 
-- (IBAction)btnStartDidTouch:(id)sender
+- (IBAction)pressBtnStart:(id)sender
 {
     [self startTimer];
 }
 
-- (IBAction)btnRecordDidTouch:(id)sender {
+- (IBAction)pressBtnRecord:(id)sender {
     
     switch (currentRecordType) {
         case RecordTypeNone:
@@ -443,7 +445,7 @@ void interruptionListenerCallback(void *inUserData, UInt32 interruptionState)
     }
 }
 
-- (IBAction)segmentDidChange:(id)sender {
+- (IBAction)changeSegment:(id)sender {
     [self stopAudioRecorder];
     switch (_segMode.selectedSegmentIndex) {
         case 0: // NONE

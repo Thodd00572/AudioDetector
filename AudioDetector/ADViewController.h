@@ -22,9 +22,9 @@
 #pragma mark - Properties
 
 
-#pragma marl - IBAction
-- (IBAction)btnStartDidTouch:(id)sender;
+#pragma mark - IBAction
+- (IBAction)pressBtnStart:(id)sender;
 //- (IBAction)btnTrackSoundDidTouch:(id)sender;
-- (IBAction)btnRecordDidTouch:(id)sender;
-- (IBAction)segmentDidChange:(id)sender;
+- (IBAction)pressBtnRecord:(id)sender;
+- (IBAction)changeSegment:(id)sender;
 @end
